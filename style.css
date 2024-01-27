@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.game-container {
+  display: flex;
+  align-items: center;
+  gap: 8vw;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  height: 80vh;
+  margin-top: 10vh;
+}
+
+.container {
+  box-sizing: content-box;
+  border: 10px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.box,
+.box-new {
+  border: 1px solid rgb(221, 221, 221);
+  background-color: #fff;
+}
+
+.box-hover {
+  background-color: rgb(0, 0, 0);
+}
