@@ -4,6 +4,8 @@ container.style.height = "70vh";
 const width = container.style.width;
 const height = container.style.height;
 
+let currentColor = "";
+
 // Creating slider
 const slider = document.querySelector(".slider");
 const value = document.querySelector("#value");
@@ -58,5 +60,42 @@ function hover(item) {
 
   item.addEventListener("mouseleave", function () {
     item.classList.remove("box-hover");
+  });
+}
+
+// Adding rainbow colors
+const rainbowBtn = document.querySelector(".btn-rainbow");
+rainbowBtn.addEventListener("click", function () {
+  currentColor = "rainbow";
+  removeHover();
+  colors();
+});
+
+const standardBtn = document.querySelector(".btn-classic");
+standardBtn.addEventListener("click", function () {
+  currentColor = "black";
+  removeHover();
+  colors();
+});
+
+function colors() {
+  boxs.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      if (currentColor === "black") {
+        item.style.backgroundColor = "black";
+      } else if (currentColor === "rainbow") {
+        item.style.backgroundColor = `rgb(${randomInt(0, 255)},${randomInt(
+          0,
+          255
+        )},${randomInt(0, 255)})`;
+      } else if (currentColor === "darken") {
+        if (item.style.backgroundColor !== "black") {
+          const colorToDarken =
+            item.style.backgroundColor || "rgb(255, 255, 255)";
+          const darkerColor = makeColorDarker(colorToDarken);
+          item.style.backgroundColor = darkerColor;
+        }
+      }
+    });
   });
 }
