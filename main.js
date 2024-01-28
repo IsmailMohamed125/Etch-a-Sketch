@@ -52,21 +52,18 @@ newBtn.addEventListener("click", function () {
   });
 });
 
-// Hover effect on boxes
-function hover(item) {
-  item.addEventListener("mouseenter", function () {
-    item.classList.add("box-hover");
-  });
-
-  item.addEventListener("mouseleave", function () {
-    item.classList.remove("box-hover");
-  });
-}
-
 // Adding rainbow colors
 const rainbowBtn = document.querySelector(".btn-rainbow");
 rainbowBtn.addEventListener("click", function () {
   currentColor = "rainbow";
+  removeHover();
+  colors();
+});
+
+// Darkening each color
+const darkenBtn = document.querySelector(".btn-darken");
+darkenBtn.addEventListener("click", function () {
+  currentColor = "darken";
   removeHover();
   colors();
 });
@@ -98,4 +95,42 @@ function colors() {
       }
     });
   });
+}
+
+function hover(item) {
+  item.addEventListener("mouseenter", function () {
+    item.classList.add("box-hover");
+  });
+
+  item.addEventListener("mouseleave", function () {
+    item.classList.remove("box-hover");
+  });
+}
+
+function removeHover() {
+  boxs.forEach((item) => item.classList.remove("box-hover"));
+}
+
+function randomInt(min, max) {
+  return Math.trunc(Math.random() * (max - min + 1)) + min;
+}
+
+function makeColorDarker(color) {
+  // Check if color is in RGB format
+  const rgbMatch = color.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+  if (rgbMatch) {
+    let r = parseInt(rgbMatch[1]);
+    let g = parseInt(rgbMatch[2]);
+    let b = parseInt(rgbMatch[3]);
+
+    const factor = 0.9;
+    r = Math.floor(r * factor);
+    g = Math.floor(g * factor);
+    b = Math.floor(b * factor);
+
+    return `rgb(${r}, ${g}, ${b})`;
+  } else {
+    // Default case: assume white
+    return "rgb(255, 255, 255)";
+  }
 }

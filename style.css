@@ -4,6 +4,26 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: "VT323";
+  background: linear-gradient(135deg, #340057, #362f2f, #4551fc);
+  background-size: 600% 600%;
+  animation: gradientAnimation 15s ease infinite;
+  color: #fff;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .game-container {
   display: flex;
   align-items: center;
